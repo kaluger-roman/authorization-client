@@ -6,6 +6,7 @@ import { Backdrop, CircularProgress, Stack } from "@mui/material";
 import { Container } from "./styles";
 import { useUnit } from "effector-react";
 import { socket } from "api";
+import { Notification } from "../components/notification";
 
 const AppNavigation = () => {
   const isSocketConnected = useUnit(socket.$isSocketConnected);
@@ -16,6 +17,7 @@ const AppNavigation = () => {
       <Backdrop open={!isSocketConnected}>
         <CircularProgress />
       </Backdrop>
+      <Notification />
       <Routes>
         <Route path={Paths.auth} element={<Auth />} />
         <Route path={Paths.register} element={<Register />} />

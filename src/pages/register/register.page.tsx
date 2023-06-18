@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Paths } from "../../shared/types";
-import { Notification } from "../../components";
 import { FormContainer, FormFields } from "shared/styles";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 
@@ -25,8 +24,6 @@ export const Register = () => {
     registerModel.$passwordConfirmTextError
   );
 
-  const errorRegister = useUnit(registerModel.$errorRegister);
-
   const actions = {
     registerClicked: useUnit(registerModel.registerClicked),
     loginTextChanged: useUnit(registerModel.loginTextChanged),
@@ -34,7 +31,6 @@ export const Register = () => {
     passwordConfirmTextChanged: useUnit(
       registerModel.passwordConfirmTextChanged
     ),
-    resetErrors: useUnit(registerModel.resetErrors),
   };
 
   const navigate = useNavigate();
@@ -43,11 +39,6 @@ export const Register = () => {
 
   return (
     <Paper sx={FormContainer}>
-      <Notification
-        type="error"
-        message={errorRegister}
-        onClose={actions.resetErrors}
-      />
       <Typography variant="h4">Registration</Typography>
       <Stack sx={FormFields}>
         <TextField

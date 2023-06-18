@@ -1,8 +1,6 @@
 FROM node:18.16.0-alpine
 WORKDIR /app
-COPY ./package.json /app
-COPY ./package-lock.json /app
-RUN npm ci
 COPY . /app
+RUN npm ci
 CMD npm start
-EXPOSE 3021
+EXPOSE 3000

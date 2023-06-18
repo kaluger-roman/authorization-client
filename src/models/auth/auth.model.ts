@@ -1,23 +1,14 @@
-import {
-  combine,
-  createEffect,
-  createEvent,
-  createStore,
-  restore,
-  sample,
-} from "effector";
+import { combine, createEffect, createEvent, restore, sample } from "effector";
 import { authApi } from "../../api";
 import { createGate } from "effector-react";
+import * as Notification from "components/notification";
 
 export const loginTextChanged = createEvent<string>();
 export const passwordTextChanged = createEvent<string>();
 export const authClicked = createEvent();
-export const resetErrors = createEvent();
 
 export const $loginText = restore(loginTextChanged, "");
 export const $passwordText = restore(passwordTextChanged, "");
-
-export const $errorAuth = createStore("");
 
 export const $isEmptyFields = combine(
   $loginText,
@@ -47,10 +38,12 @@ sample({
 
 sample({
   clock: authApi.authFx.failData,
-  target: $errorAuth,
+  fn: (message): Notification.NotificationPayload => ({
+    type: "error",
+    message,
+  }),
+  target: Notification.addNotification,
 });
 
-$errorAuth.reset([resetErrors]);
-
-$loginText.reset(PageGate.close);
-$passwordText.reset(PageGate.close);
+$loginText.reset([PageGate.close, authApi.authFx.done]);
+$passwordText.reset([PageGate.close, authApi.authFx.done]);

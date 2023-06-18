@@ -1,34 +1,23 @@
-import { Snackbar, Alert, AlertColor } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Snackbar, Alert } from "@mui/material";
+import { useUnit } from "effector-react";
+import { $currentNotification, deleteNotification } from "./notification.model";
 
-type NotificationProps = {
-  message: string;
-  type: AlertColor;
-  onClose?: () => void;
-};
+export const Notification = () => {
+  const currentNotification = useUnit($currentNotification);
+  const actions = useUnit({ deleteNotification });
 
-export const Notification = ({ message, type, onClose }: NotificationProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    message && setIsOpen(true);
-  }, [message, type]);
-
-  useEffect(() => onClose, []);
-
-  const onCloseHandler = () => {
-    onClose?.();
-    setIsOpen(false);
-  };
+  if (!currentNotification) return null;
 
   return (
     <Snackbar
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isOpen}
+      open={Boolean(currentNotification)}
       autoHideDuration={6000}
-      onClose={onCloseHandler}
+      onClose={() => actions.deleteNotification(currentNotification.id)}
     >
-      <Alert severity="success">This is a success message!</Alert>
+      <Alert severity={currentNotification.type}>
+        {currentNotification.message}
+      </Alert>
     </Snackbar>
   );
 };

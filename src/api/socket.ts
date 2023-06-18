@@ -7,13 +7,13 @@ const pendingRequests: Record<string, (response: SocketResponse<any>) => void> =
   {};
 
 export const socket = io(
-  `${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
+  `${process.env.REACT_APP_SERVER_HOST}:${process.env.REACT_APP_SERVER_PORT}`,
   {
     transports: ["websocket"],
   }
 );
 
-socket.onAny((response: SocketResponse) => {
+socket.onAny((_, response: SocketResponse) => {
   if (response.id && pendingRequests[response.id]) {
     pendingRequests[response.id](response);
     Reflect.deleteProperty(pendingRequests, response.id);
@@ -39,6 +39,6 @@ export const $isSocketConnected = createStore(false);
 
 const socketConnected = createEvent();
 
-$isSocketConnected.on(socketConnected, (_, socketConnected) => socketConnected);
+$isSocketConnected.on(socketConnected, () => true);
 
 socket.on("connect", socketConnected);
