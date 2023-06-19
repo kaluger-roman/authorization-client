@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "../MasterKufaTools/src/notification"],
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

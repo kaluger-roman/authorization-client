@@ -1,7 +1,7 @@
 import { combine, createEffect, createEvent, restore, sample } from "effector";
 import { authApi } from "../../api";
 import { createGate } from "effector-react";
-import * as Notification from "components/notification";
+import { Notification } from "@master_kufa/client-tools";
 
 export const loginTextChanged = createEvent<string>();
 export const passwordTextChanged = createEvent<string>();
@@ -38,11 +38,11 @@ sample({
 
 sample({
   clock: authApi.authFx.failData,
-  fn: (message): Notification.NotificationPayload => ({
+  fn: (message: string): Notification.Payload => ({
     type: "error",
     message,
   }),
-  target: Notification.addNotification,
+  target: Notification.add,
 });
 
 $loginText.reset([PageGate.close, authApi.authFx.done]);

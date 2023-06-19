@@ -11,7 +11,7 @@ import { validatePassword } from "./register.helpers";
 import { LOGIN_EMPTY_ERROR } from "../../shared/constants";
 import { createGate } from "effector-react";
 import { navigation } from "shared/navigate";
-import * as Notification from "components/notification";
+import { Notification } from "@master_kufa/client-tools";
 
 export const loginTextChanged = createEvent<string>();
 export const passwordTextChanged = createEvent<string>();
@@ -82,20 +82,20 @@ sample({
 
 sample({
   clock: authApi.registerFx.done,
-  fn: (): Notification.NotificationPayload => ({
+  fn: (): Notification.Payload => ({
     type: "success",
     message: "User was successfully created",
   }),
-  target: Notification.addNotification,
+  target: Notification.add,
 });
 
 sample({
   clock: authApi.registerFx.failData,
-  fn: (message): Notification.NotificationPayload => ({
+  fn: (message: string): Notification.Payload => ({
     type: "error",
     message,
   }),
-  target: Notification.addNotification,
+  target: Notification.add,
 });
 
 $loginText.reset(PageGate.close);

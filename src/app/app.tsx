@@ -5,11 +5,10 @@ import { Auth, Register } from "../pages";
 import { Backdrop, CircularProgress, Stack } from "@mui/material";
 import { Container } from "./styles";
 import { useUnit } from "effector-react";
-import { socket } from "api";
-import { Notification } from "../components/notification";
+import { Notification, socket } from "@master_kufa/client-tools";
 
 const AppNavigation = () => {
-  const isSocketConnected = useUnit(socket.$isSocketConnected);
+  const isSocketConnected = useUnit(socket.$isConnected);
   useInitNavigation();
 
   return (
@@ -17,7 +16,7 @@ const AppNavigation = () => {
       <Backdrop open={!isSocketConnected}>
         <CircularProgress />
       </Backdrop>
-      <Notification />
+      <Notification.Component />
       <Routes>
         <Route path={Paths.auth} element={<Auth />} />
         <Route path={Paths.register} element={<Register />} />
