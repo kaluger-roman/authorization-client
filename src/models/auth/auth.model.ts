@@ -38,7 +38,7 @@ sample({
 
 sample({
   clock: authApi.authFx.failData,
-  fn: (message: string): Notification.PayloadType => ({
+  fn: (message: string): Notification.Payload => ({
     type: "error",
     message,
   }),

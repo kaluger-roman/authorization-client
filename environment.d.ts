@@ -1,6 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    SERVER_HOST: string;
-    SERVER_PORT: string;
+    REACT_APP_SERVER_HOST: string;
+    REACT_APP_SERVER_PORT: string;
   }
 }

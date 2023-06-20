@@ -82,7 +82,7 @@ sample({
 
 sample({
   clock: authApi.registerFx.done,
-  fn: (): Notification.PayloadType => ({
+  fn: (): Notification.Payload => ({
     type: "success",
     message: "User was successfully created",
   }),
@@ -91,7 +91,7 @@ sample({
 
 sample({
   clock: authApi.registerFx.failData,
-  fn: (message: string): Notification.PayloadType => ({
+  fn: (message: string): Notification.Payload => ({
     type: "error",
     message,
   }),

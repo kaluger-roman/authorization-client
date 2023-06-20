@@ -3,6 +3,12 @@ import { ACTIONS } from "./actions";
 import { socket } from "@master_kufa/client-tools";
 import { AuthPayload, RegisterPayload } from "../shared/types";
 
+export const connectSocketFx = createEffect(() =>
+  socket.connect(
+    `${process.env.REACT_APP_SERVER_HOST}:${process.env.REACT_APP_SERVER_PORT}`
+  )
+);
+
 export const authFx = createEffect<AuthPayload, string, string>((payload) =>
   socket.emitWithAnswer<AuthPayload, string>(ACTIONS.AUTH, payload)
 );
