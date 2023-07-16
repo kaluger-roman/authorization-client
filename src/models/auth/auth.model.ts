@@ -1,7 +1,7 @@
 import { combine, createEffect, createEvent, restore, sample } from "effector";
 import { authApi } from "../../api";
 import { createGate } from "effector-react";
-import { Notification } from "@master_kufa/client-tools";
+import { Notification, authTools } from "@master_kufa/client-tools";
 
 export const loginTextChanged = createEvent<string>();
 export const passwordTextChanged = createEvent<string>();
@@ -21,7 +21,7 @@ export const $authPending = authApi.authFx.pending;
 export const PageGate = createGate();
 
 export const saveTokenFx = createEffect<string, void>(
-  (token) => void (localStorage.authToken = token)
+  authTools.handleAuthorized
 );
 
 sample({
