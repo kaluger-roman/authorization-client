@@ -20,8 +20,10 @@ const AppNavigation = () => {
       </Backdrop>
       <Notification.Component />
       <Routes>
-        <Route path={Paths.auth} element={<Auth />} />
-        <Route path={Paths.register} element={<Register />} />
+        <Route path={Paths.root}>
+          <Route index path={Paths.auth} element={<Auth />} />
+          <Route path={Paths.register} element={<Register />} />
+        </Route>
       </Routes>
     </Stack>
   );
