@@ -8,10 +8,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { Paths } from "../../shared/types";
 import { FormContainer, FormFields } from "shared/styles";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
+import { navigation } from "../../shared/navigate";
 
 export const Auth = () => {
   const loginText = useUnit(authModel.$loginText);
@@ -24,8 +24,6 @@ export const Auth = () => {
     loginTextChanged: useUnit(authModel.loginTextChanged),
     passwordTextChanged: useUnit(authModel.passwordTextChanged),
   };
-
-  const navigate = useNavigate();
 
   useGate(authModel.PageGate);
 
@@ -54,7 +52,7 @@ export const Auth = () => {
         </Button>
         <Chip
           clickable
-          onClick={() => navigate(Paths.register)}
+          onClick={() => navigation.navigate(Paths.register)}
           label="Registration"
         />
       </Stack>
