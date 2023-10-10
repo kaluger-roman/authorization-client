@@ -12,6 +12,7 @@ import { Paths } from "../../shared/types";
 import { FormContainer, FormFields } from "shared/styles";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import { navigation } from "../../shared/navigate";
+import { PasswordStyles } from "./auth.styles";
 
 export const Auth = () => {
   const loginText = useUnit(authModel.$loginText);
@@ -32,12 +33,14 @@ export const Auth = () => {
       <Typography variant="h4">Authorization</Typography>
       <Stack sx={FormFields}>
         <TextField
+          type="text"
           label="Login"
           value={loginText}
           onChange={({ target }) => actions.loginTextChanged(target.value)}
         />
         <TextField
-          type="password"
+          type="text"
+          InputProps={{ sx: PasswordStyles }}
           label="Password"
           value={passwordText}
           onChange={({ target }) => actions.passwordTextChanged(target.value)}
