@@ -14,7 +14,6 @@ const AppNavigation = () => {
 
   return (
     <Stack sx={Container}>
-      <Notification.Component />
       <Routes>
         <Route path={Paths.root}>
           <Route index path={Paths.auth} element={<Auth />} />
@@ -26,7 +25,10 @@ const AppNavigation = () => {
 };
 
 export const App = () => (
-  <BrowserRouter>
-    <AppNavigation />
-  </BrowserRouter>
+  <>
+    <Notification.Component />
+    <BrowserRouter>
+      <AppNavigation />
+    </BrowserRouter>
+  </>
 );
