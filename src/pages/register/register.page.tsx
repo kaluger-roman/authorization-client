@@ -40,6 +40,7 @@ export const Register = () => {
       <Typography variant="h4">Registration</Typography>
       <Stack sx={FormFields}>
         <TextField
+          name="login"
           label="Login"
           value={loginText}
           onChange={({ target }) => actions.loginTextChanged(target.value)}
@@ -47,6 +48,7 @@ export const Register = () => {
           helperText={loginTextError}
         />
         <TextField
+          name="password"
           type="password"
           label="Password"
           value={passwordText}
@@ -55,6 +57,7 @@ export const Register = () => {
           helperText={passwordTextError}
         />
         <TextField
+          name="passwordX2"
           type="password"
           label="Password Confirmation"
           value={passwordConfirmText}
