@@ -69,7 +69,7 @@ export const Register = () => {
         />
         <Button
           endIcon={registerPending && <HourglassTopIcon />}
-          variant="contained"
+          variant="outlined"
           onClick={actions.registerClicked}
         >
           Sign up

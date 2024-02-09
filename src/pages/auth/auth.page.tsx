@@ -48,7 +48,7 @@ export const Auth = () => {
         <Button
           endIcon={authPending && <HourglassTopIcon />}
           disabled={isEmptyFields}
-          variant="contained"
+          variant="outlined"
           onClick={actions.authClicked}
         >
           Sign in
