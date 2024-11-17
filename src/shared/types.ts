@@ -3,6 +3,6 @@ export type RegisterPayload = AuthPayload;
 
 export enum Paths {
   root = "/",
-  auth = "/domain-auth/auth",
-  register = "/domain-auth/register",
+  auth = "/auth",
+  register = "/register",
 }
