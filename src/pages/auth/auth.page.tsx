@@ -1,18 +1,13 @@
 import { useGate, useUnit } from "effector-react";
 import { authModel } from "../../models";
-import {
-  Button,
-  Chip,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Paper, Stack, TextField, Typography } from "@mui/material";
 import { Paths } from "../../shared/types";
 import { FormContainer, FormFields } from "shared/styles";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import { navigation } from "../../shared/navigate";
 import { PasswordStyles } from "./auth.styles";
+import { useAppSelect } from "./hooks";
+import { AppBackButton } from "components";
 
 export const Auth = () => {
   const loginText = useUnit(authModel.$loginText);
@@ -28,20 +23,22 @@ export const Auth = () => {
 
   useGate(authModel.PageGate);
 
+  useAppSelect();
+
   return (
     <Paper sx={FormContainer}>
-      <Typography variant="h4">Authorization</Typography>
+      <Typography variant="h4">Авторизация</Typography>
       <Stack sx={FormFields}>
         <TextField
           type="text"
-          label="Login"
+          label="Логин"
           value={loginText}
           onChange={({ target }) => actions.loginTextChanged(target.value)}
         />
         <TextField
           type="text"
           InputProps={{ sx: PasswordStyles }}
-          label="Password"
+          label="Пароль"
           value={passwordText}
           onChange={({ target }) => actions.passwordTextChanged(target.value)}
         />
@@ -51,13 +48,17 @@ export const Auth = () => {
           variant="outlined"
           onClick={actions.authClicked}
         >
-          Sign in
+          Вход
         </Button>
-        <Chip
-          clickable
+        <Button
+          variant="outlined"
+          sx={{ borderRadius: 4 }}
+          size="small"
           onClick={() => navigation.navigate(Paths.register)}
-          label="Registration"
-        />
+        >
+          К Регистрации
+        </Button>
+        <AppBackButton />
       </Stack>
     </Paper>
   );

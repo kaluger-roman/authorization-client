@@ -32,7 +32,7 @@ export const $registerPending = authApi.registerFx.pending;
 export const PageGate = createGate();
 
 export const redirectToAuthFx = createEffect(() =>
-  navigation.navigate(Paths.auth)
+  navigation.navigate(Paths.applications)
 );
 
 sample({

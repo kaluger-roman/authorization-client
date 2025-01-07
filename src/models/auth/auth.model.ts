@@ -2,6 +2,7 @@ import { combine, createEffect, createEvent, restore, sample } from "effector";
 import { authApi } from "../../api";
 import { createGate } from "effector-react";
 import { Notification, authTools } from "@master_kufa/client-tools";
+import { applicationsModel } from "models/applications";
 
 export const loginTextChanged = createEvent<string>();
 export const passwordTextChanged = createEvent<string>();
@@ -26,8 +27,12 @@ export const saveTokenFx = createEffect<string, void>(
 
 sample({
   clock: authClicked,
-  source: [$loginText, $passwordText],
-  fn: ([login, password]) => ({ password, login }),
+  source: [$loginText, $passwordText, applicationsModel.$application] as const,
+  fn: ([login, password, application]) => ({
+    password,
+    login,
+    application: application!,
+  }),
   target: authApi.authFx,
 });
 

@@ -9,4 +9,4 @@ export const FormContainer: SxProps = {
   gap: 3,
 };
 
-export const FormFields: SxProps = { gap: 1 };
+export const FormFields: SxProps = { gap: 2 };

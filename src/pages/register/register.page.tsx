@@ -1,17 +1,11 @@
 import { useGate, useUnit } from "effector-react";
 import { registerModel } from "../../models";
-import {
-  Button,
-  Chip,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Paper, Stack, TextField, Typography } from "@mui/material";
 import { Paths } from "../../shared/types";
 import { FormContainer, FormFields } from "shared/styles";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import { navigation } from "../../shared/navigate";
+import { applicationsModel } from "models/applications";
 
 export const Register = () => {
   const loginText = useUnit(registerModel.$loginText);
@@ -20,6 +14,7 @@ export const Register = () => {
   const registerPending = useUnit(registerModel.$registerPending);
   const loginTextError = useUnit(registerModel.$loginTextError);
   const passwordTextError = useUnit(registerModel.$passwordTextError);
+  const application = useUnit(applicationsModel.$application);
   const passwordConfirmTextError = useUnit(
     registerModel.$passwordConfirmTextError
   );
@@ -37,11 +32,11 @@ export const Register = () => {
 
   return (
     <Paper sx={FormContainer}>
-      <Typography variant="h4">Registration</Typography>
+      <Typography variant="h4">Регистрация</Typography>
       <Stack sx={FormFields}>
         <TextField
           name="login"
-          label="Login"
+          label="Логин"
           value={loginText}
           onChange={({ target }) => actions.loginTextChanged(target.value)}
           error={Boolean(loginTextError)}
@@ -50,7 +45,7 @@ export const Register = () => {
         <TextField
           name="password"
           type="password"
-          label="Password"
+          label="Пароль"
           value={passwordText}
           onChange={({ target }) => actions.passwordTextChanged(target.value)}
           error={Boolean(passwordTextError)}
@@ -59,7 +54,7 @@ export const Register = () => {
         <TextField
           name="passwordX2"
           type="password"
-          label="Password Confirmation"
+          label="Подтверждение пароля"
           value={passwordConfirmText}
           onChange={({ target }) =>
             actions.passwordConfirmTextChanged(target.value)
@@ -72,13 +67,16 @@ export const Register = () => {
           variant="outlined"
           onClick={actions.registerClicked}
         >
-          Sign up
+          Зарегистрироваться
         </Button>
-        <Chip
-          clickable
-          onClick={() => navigation.navigate(Paths.auth)}
-          label="Authorization"
-        />
+        <Button
+          variant="outlined"
+          sx={{ borderRadius: 4 }}
+          size="small"
+          onClick={() => navigation.navigate(`${Paths.auth}#${application}`)}
+        >
+          Авторизация
+        </Button>
       </Stack>
     </Paper>
   );
