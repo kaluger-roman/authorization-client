@@ -4,6 +4,7 @@ import { theme } from "@master_kufa/client-tools";
 import { applicationsModel } from "models/applications";
 import { navigation } from "shared/navigate";
 import { Paths } from "shared/types";
+import { ReactComponent as LogoFull } from "@master_kufa/client-tools/icons/logo-full.svg";
 
 export const Applications = () => {
   return (
@@ -68,13 +69,8 @@ export const Applications = () => {
           </Box>
         ))}
       </Box>
-      <Typography
-        fontWeight="bold"
-        sx={{ color: theme.palette.text.primary }}
-        variant="h6"
-      >
-        Выберите приложение
-      </Typography>
+
+      <LogoFull style={{ width: 180 }} />
     </Box>
   );
 };

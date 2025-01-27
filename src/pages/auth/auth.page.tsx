@@ -1,6 +1,13 @@
 import { useGate, useUnit } from "effector-react";
 import { authModel } from "../../models";
-import { Button, Paper, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Paths } from "../../shared/types";
 import { FormContainer, FormFields } from "shared/styles";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
@@ -8,6 +15,7 @@ import { navigation } from "../../shared/navigate";
 import { PasswordStyles } from "./auth.styles";
 import { useAppSelect } from "./hooks";
 import { AppBackButton } from "components";
+import { ReactComponent as Logo } from "@master_kufa/client-tools/icons/logo.svg";
 
 export const Auth = () => {
   const loginText = useUnit(authModel.$loginText);
@@ -27,7 +35,18 @@ export const Auth = () => {
 
   return (
     <Paper sx={FormContainer}>
-      <Typography variant="h4">Авторизация</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography variant="h4">Авторизация</Typography>
+        <Logo style={{ height: 30 }} />
+      </Box>
+
       <Stack sx={FormFields}>
         <TextField
           type="text"

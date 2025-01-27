@@ -26,8 +26,8 @@ export const AppBackButton = () => {
       <Divider sx={{ ml: "auto" }} orientation="vertical" />
       <Button
         size="small"
+        variant="text"
         onClick={() => navigation.navigate(Paths.applications)}
-        sx={{ borderRadius: 4 }}
       >
         Сменить приложение
       </Button>

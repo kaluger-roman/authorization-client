@@ -1,11 +1,19 @@
 import { useGate, useUnit } from "effector-react";
 import { registerModel } from "../../models";
-import { Button, Paper, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Paths } from "../../shared/types";
 import { FormContainer, FormFields } from "shared/styles";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import { navigation } from "../../shared/navigate";
 import { applicationsModel } from "models/applications";
+import { ReactComponent as Logo } from "@master_kufa/client-tools/icons/logo.svg";
 
 export const Register = () => {
   const loginText = useUnit(registerModel.$loginText);
@@ -32,7 +40,17 @@ export const Register = () => {
 
   return (
     <Paper sx={FormContainer}>
-      <Typography variant="h4">Регистрация</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography variant="h4">Регистрация</Typography>
+        <Logo style={{ height: 30 }} />
+      </Box>
       <Stack sx={FormFields}>
         <TextField
           name="login"
@@ -75,7 +93,7 @@ export const Register = () => {
           size="small"
           onClick={() => navigation.navigate(`${Paths.auth}#${application}`)}
         >
-          Авторизация
+          К Авторизации
         </Button>
       </Stack>
     </Paper>

@@ -2,10 +2,11 @@
   "name": "authorization-client",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@master_kufa/client-tools": "^0.22.62",
+    "@master_kufa/client-tools": "^0.23.10",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.4",
     "effector": "^22.8.6",
